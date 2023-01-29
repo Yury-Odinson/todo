@@ -1,0 +1,92 @@
+.container {
+    margin: 100px auto;
+    border-radius: 20px;
+    border: 1px solid #252525;
+    width: 800px;
+    background: rgb(82,155,254);
+    background: linear-gradient(353deg, rgba(82,155,254,0.29175420168067223) 0%, rgba(74,175,236,0.1741071428571429) 48%, rgba(0,198,255,0.33657212885154064) 100%);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.button {
+    padding: 20px 40px;
+    background-color: #ccc;
+    border-radius: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.button__del {
+    background-color: #fabebe;
+}
+
+.button__add {
+    background-color: #cbffbf;
+}
+
+.input__todo {
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+.body {
+    padding: 20px;
+}
+
+.todo-elem {
+    margin: 20px 0;
+    position: relative;
+    display: flex;
+    border: 2px solid #bbb;
+    border-radius: 10px;
+}
+
+.todo-elem__check {
+    margin: auto 20px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.todo-elem__text {
+    margin: 20px;
+    min-width: 500px;
+    min-height: 100px;
+    max-width: 500px;
+    max-height: 300px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 2rem;
+}
+
+.todo-elem-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    max-width: 150px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.button__delTask {
+    margin: auto;
+    margin-right: 0;
+    padding: 10px 30px;
+    background-color: #fabebe;
+}
+
+.date__todo {
+    margin: auto;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+
+}
