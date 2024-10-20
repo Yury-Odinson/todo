@@ -1,8 +1,29 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {TaskElement} from "./TaskElement";
 import {CirclePlus} from 'lucide-react';
+import {useStoreTasks} from "../tools/store";
+import {Task} from "../tools/types";
 
 export const Main: React.FC = () => {
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const tasks = useStoreTasks((state: { items: Task; }) => state.items);
+    const addTask = useStoreTasks((state: { addTask: () => void; }) => state.addTask);
+
+    useEffect(() => {
+        console.log(tasks);
+    }, [tasks]);
+
+    const idTask = (Math.floor(Math.random() * (100000 - 1)) + 1).toString();
+
+    const handlerAddTask = () => {
+        const input = inputRef.current?.value;
+        if (input) {
+            addTask({task: input, completed: false, id: idTask});
+            inputRef.current.value = "";
+        }
+    };
 
     return (
         <div
@@ -13,14 +34,18 @@ export const Main: React.FC = () => {
             <div className="py-10 px-5">
                 <div className="bg-blue-100">
                     <label className="flex items-center gap-2 p-2">
-                        <CirclePlus className="cursor-pointer"/>
-                        <input className="flex-1 p-2" placeholder="What needs to be done?"/>
+                        <CirclePlus className="cursor-pointer" onClick={handlerAddTask}/>
+                        <input
+                            ref={inputRef}
+                            className="flex-1 p-2" placeholder="What needs to be done?"
+                        />
                     </label>
                 </div>
 
                 <div className="my-2 flex flex-col gap-2">
-                    <TaskElement task={"task 1"} completed={true} id={"1"}/>
-                    <TaskElement task={"some task"} completed={false} id={"2"}/>
+                    {tasks?.map((task: Task) => (
+                        <TaskElement task={task.task} completed={task.completed} id={task.id} key={task.id}/>
+                    ))}
                 </div>
             </div>
             <div className="px-10 py-5 flex gap-5 items-center">
