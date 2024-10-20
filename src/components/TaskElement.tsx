@@ -12,12 +12,12 @@ export const TaskElement: React.FC<Task> = ({task, completed, id}) => {
     const handlerCompleted = () => {
         const newCompletedState = !isCompleted;
         setIsCompleted(newCompletedState);
-        updateTask(id, { completed: newCompletedState });
+        updateTask(id, {completed: newCompletedState});
     };
 
     return (
-        <div className=" p-2 bg-blue-100" id={id}>
-            <div className="flex gap-2 cursor-pointer" onClick={handlerCompleted}>
+        <div className={isCompleted ? "p-4" : "p-4 shadow-xl"} id={id}>
+            <div className="flex gap-4 cursor-pointer" onClick={handlerCompleted}>
                 {isCompleted ? <CircleCheckBig/> : <Circle/>}
                 <p className={isCompleted ? "line-through text-gray-400" : ""}>{task}</p>
             </div>

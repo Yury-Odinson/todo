@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
 import {TaskElement} from "./TaskElement";
 import {CirclePlus} from 'lucide-react';
 import {useStoreTasks} from "../tools/store";
@@ -10,10 +10,7 @@ export const Main: React.FC = () => {
 
     const tasks = useStoreTasks((state: { items: Task; }) => state.items);
     const addTask = useStoreTasks((state: { addTask: () => void; }) => state.addTask);
-
-    useEffect(() => {
-        console.log(tasks);
-    }, [tasks]);
+    const removeTasks = useStoreTasks((state: { removeTasks: () => void }) => state.removeTasks);
 
     const idTask = (Math.floor(Math.random() * (100000 - 1)) + 1).toString();
 
@@ -25,15 +22,17 @@ export const Main: React.FC = () => {
         }
     };
 
+    const remainingTasksCount = tasks?.filter((task: Task) => !task.completed).length;
+
     return (
         <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 shadow-2xl bg-white rounded-3xl">
             <div>
-                <h1 className="text-6xl">todos</h1>
+                <h1 className="text-6xl font-light text-fuchsia-200">todos</h1>
             </div>
             <div className="py-10 px-5">
-                <div className="bg-blue-100">
-                    <label className="flex items-center gap-2 p-2">
+                <div className="mb-10 shadow-xl">
+                    <label className="flex items-center gap-4 p-2">
                         <CirclePlus className="cursor-pointer" onClick={handlerAddTask}/>
                         <input
                             ref={inputRef}
@@ -48,14 +47,14 @@ export const Main: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="px-10 py-5 flex gap-5 items-center">
-                <span>
-                    {/*{COUNTER}*/}
+            <div className="px-5 pb-10 flex gap-5 items-center justify-between">
+                <span className="w-32 text-left">
+                    {remainingTasksCount <= 0 ? "" : remainingTasksCount + " items left"}
                 </span>
                 <button className="">All</button>
                 <button className="">Active</button>
                 <button className="">Completed</button>
-                <button className="">Clear Completed</button>
+                <button className="" onClick={removeTasks}>Clear Completed</button>
             </div>
         </div>
     );

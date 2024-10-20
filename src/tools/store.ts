@@ -10,5 +10,7 @@ export const useStoreTasks: any = create((set) => ({
                 task.id === id ? {...task, ...updatedTask} : task
             ),
         })),
-    removeTasks: () => set({items: []}),
+    removeTasks: () => set((state: { items: Task[] }) => ({
+        items: state.items.filter((task) => !task.completed),
+    })),
 }));
