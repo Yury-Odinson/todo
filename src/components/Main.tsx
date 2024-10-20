@@ -33,7 +33,8 @@ export const Main: React.FC = () => {
 
     return (
         <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 shadow-2xl bg-white">
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] max-w-[700px]
+            shadow-2xl bg-white">
 
             <div>
                 <h1 className="text-6xl font-light text-blue-200">todos</h1>
@@ -57,12 +58,12 @@ export const Main: React.FC = () => {
                 </div>
             </div>
 
-            <div className="px-5 pb-10 flex gap-5 items-center justify-between">
+            <div className="px-5 pb-10 flex gap-5 flex-wrap items-center justify-between">
                 <span className="w-24 text-left">
                     {remainingTasksCount <= 0 ? "" : remainingTasksCount + " items left"}
                 </span>
 
-                <div className="flex flex-1 gap-6">
+                <div className="flex flex-1 gap-6 ">
                     <button className={filtered === "All" ? "font-bold " : "font-light text-gray-400"}
                             onClick={() => setFiltered("All")}>All
                     </button>

@@ -17,9 +17,11 @@ export const TaskElement: React.FC<Task> = ({task, completed, id}) => {
 
     return (
         <div className={isCompleted ? "p-4" : "p-4 shadow-xl"} id={id}>
-            <div className="flex gap-4 cursor-pointer" onClick={handlerCompleted}>
-                {isCompleted ? <CircleCheckBig/> : <Circle/>}
-                <p className={isCompleted ? "p-2 line-through text-gray-400" : ""}>{task}</p>
+            <div className="flex gap-4 items-center cursor-pointer break-all" onClick={handlerCompleted}>
+                <div>
+                    {isCompleted ? <CircleCheckBig/> : <Circle/>}
+                </div>
+                <p className={isCompleted ? "line-through text-gray-400 " : ""}>{task}</p>
             </div>
         </div>
     );
