@@ -5,7 +5,7 @@ import {useStoreTasks} from "../tools/store";
 
 export const TaskElement: React.FC<Task> = ({task, completed, id}) => {
 
-    const updateTask = useStoreTasks((state: { updateTask: () => void; }) => state.updateTask);
+    const updateTask = useStoreTasks((state) => state.updateTask);
 
     const [isCompleted, setIsCompleted] = useState<boolean>(completed);
 
@@ -19,7 +19,7 @@ export const TaskElement: React.FC<Task> = ({task, completed, id}) => {
         <div className={isCompleted ? "p-4" : "p-4 shadow-xl"} id={id}>
             <div className="flex gap-4 cursor-pointer" onClick={handlerCompleted}>
                 {isCompleted ? <CircleCheckBig/> : <Circle/>}
-                <p className={isCompleted ? "line-through text-gray-400" : ""}>{task}</p>
+                <p className={isCompleted ? "p-2 line-through text-gray-400" : ""}>{task}</p>
             </div>
         </div>
     );

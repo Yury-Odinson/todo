@@ -1,7 +1,7 @@
 import {create} from 'zustand'
-import {Task} from "./types";
+import {StoreTasks, Task} from "./types";
 
-export const useStoreTasks: any = create((set) => ({
+export const useStoreTasks = create<StoreTasks>((set) => ({
     items: [],
     addTask: (item: Task) => set((state: { items: Task[] }) => ({items: [...state.items, item]})),
     updateTask: (id: string, updatedTask: Partial<Task>) =>
