@@ -1,6 +1,7 @@
 {
   "name": "todo-mindbox",
   "version": "0.1.0",
+  "homepage": "https://yury-odinson.github.io/todo/",
   "private": true,
   "dependencies": {
     "@testing-library/react": "^16.0.1",
